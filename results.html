@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <title>Tip results</title>
+  </head>
+  <body>
+    <section class="section">
+      <div class="column is-multiline">
+        <div class="column is-12-tablet is-6-desktop is-3-widescreen">
+          <div class="notification is-primary has-text">
+            <p id="outTip" class="title is-1">$</p>
+            <p class="subtitle is-4">The Tip Amount is</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-multiline">
+        <div class="column is-12-tablet is-6-desktop is-3-widescreen">
+          <div class="notification is-link has-text">
+            <p id="outTotal" class="title is-1">$</p>
+            <p class="subtitle is-4">The Total Bill (including tip) is</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="level">
+        <div class="level-right">
+          <div class="level-item">
+            <div class="field">
+              <div class="grid-container">
+                <div class="grid-item">
+                  <input
+                    type="radio"
+                    id="serviceTip"
+                    value="12"
+                    name="tipVal"
+                  />
+                  <label for="serviceTip" class="label1">
+                    <span>12</span>
+                  </label>
+                </div>
+
+                <div class="grid-item">
+                  <input
+                    type="radio"
+                    id="serviceTip"
+                    value="15"
+                    name="tipVal"
+                  />
+                  <label for="serviceTip" class="label1">
+                    <span>15</span>
+                  </label>
+                </div>
+
+                <div class="grid-item">
+                  <input
+                    type="radio"
+                    id="serviceTip"
+                    value="18"
+                    name="tipVal"
+                  />
+                  <label for="serviceTip" class="label1">
+                    <span>18</span>
+                  </label>
+                </div>
+
+                <div class="grid-item">
+                  <input
+                    type="radio"
+                    id="serviceTip"
+                    value="20"
+                    name="tipVal"
+                  />
+                  <label for="serviceTip" class="label1">
+                    <span>20</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <form id="newreq">
+      <input type="submit" value="Calculate again with different tip" />
+    </form>
+  </body>
+
+  <script>
+    var billAmount = localStorage.getItem("billamount");
+    var serviceTip = localStorage.getItem("tipamount");
+
+    if (billAmount == "" || billAmount == undefined || billAmount <= 0) {
+      alert("Please provide your total bill (should be >0)");
+    }
+
+    if (serviceTip == 12) {
+      var tipTotal = billAmount * 0.12;
+    } else if (serviceTip == 15) {
+      var tipTotal = billAmount * 0.15;
+    } else if (serviceTip == 18) {
+      var tipTotal = billAmount * 0.18;
+    } else if (serviceTip == 20) {
+      var tipTotal = billAmount * 0.2;
+    }
+
+    var billvar = parseInt(billAmount);
+    var totalAmount = billvar + tipTotal;
+
+    //Results:
+    document.getElementById("outTip").innerHTML = "$" + tipTotal.toFixed(2);
+    document.getElementById("outTotal").innerHTML =
+      "$" + totalAmount.toFixed(2);
+
+    //get the new button
+    document.getElementById("newreq").addEventListener("click", newCalc);
+
+    //newCalc() function
+    function newCalc(e) {
+      //Resetting
+      var tipTotal = 0;
+      var totalAmount = 0;
+      var newtipamount = document.querySelector('input[name="tipVal"]:checked')
+        .value;
+      localStorage.setItem("newtipamount", newtipamount);
+
+      var billAmount = localStorage.getItem("billamount");
+
+      //Setting new tip
+      if (newtipamount == 12) {
+        var tipTotal = billAmount * 0.12;
+      } else if (newtipamount == 15) {
+        var tipTotal = billAmount * 0.15;
+      } else if (newtipamount == 18) {
+        var tipTotal = billAmount * 0.18;
+      } else if (newtipamount == 20) {
+        var tipTotal = billAmount * 0.3;
+      }
+
+      var billvar = parseInt(billAmount);
+      var totalAmount = billvar + tipTotal;
+
+      //Results:
+      document.getElementById("outTip").innerHTML = "$" + tipTotal.toFixed(2);
+      document.getElementById("outTotal").innerHTML =
+        "$" + totalAmount.toFixed(2);
+
+      e.preventDefault();
+    }
+  </script>
+</html>

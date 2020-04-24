@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tip Calculator</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="./icons8-bill-30.png" alt="" />
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <p class="subtitle">Tip Calculator</p>
+      </div>
+
+      <div class="columns">
+        <div class="column is-three-quarters">
+          <div class="card">
+            <div class="card-content">
+              <form id="form">
+                <div class="level">
+                  <!--L-->
+                  <div class="level-left is-marginless">
+                    <div class="level-item">
+                      <p class="number">1</p>
+                      How much was your bill?
+                    </div>
+                  </div>
+
+                  <!--R-->
+                  <div class="level-right">
+                    <div class="level-item">
+                      <div class="field">
+                        <div class="control has-icons-right">
+                          <input
+                            type="number"
+                            class="input"
+                            id="TipAmount"
+                            min="0"
+                          />
+                          <span class="icon is-small is-right">
+                            <i class="fa fa-dollar-sign"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--2nd Input-->
+                <div class="level">
+                  <!--L-->
+                  <div class="level-left is-marginless">
+                    <div class="level-item">
+                      <p class="number">2</p>
+                      Please select your tip percentage
+                    </div>
+                  </div>
+
+                  <!--R-->
+                  <div class="level-right">
+                    <div class="level-item">
+                      <div class="field">
+                        <div class="grid-container">
+                          <div class="grid-item">
+                            <input
+                              type="radio"
+                              id="serviceTip"
+                              value="12"
+                              name="tipVal"
+                            />
+                            <label for="serviceTip" class="label1">
+                              <span>12</span>
+                            </label>
+                          </div>
+
+                          <div class="grid-item">
+                            <input
+                              type="radio"
+                              id="serviceTip"
+                              value="15"
+                              name="tipVal"
+                            />
+                            <label for="serviceTip" class="label1">
+                              <span>15</span>
+                            </label>
+                          </div>
+
+                          <div class="grid-item">
+                            <input
+                              type="radio"
+                              id="serviceTip"
+                              value="18"
+                              name="tipVal"
+                            />
+                            <label for="serviceTip" class="label1">
+                              <span>18</span>
+                            </label>
+                          </div>
+
+                          <div class="grid-item">
+                            <input
+                              type="radio"
+                              id="serviceTip"
+                              value="20"
+                              name="tipVal"
+                            />
+                            <label for="serviceTip" class="label1">
+                              <span>20</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <form action="./results.html">
+                <input
+                  type="submit"
+                  value="Calculate Tip"
+                  onclick="passValues()"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    function passValues() {
+      var billamount = document.getElementById("TipAmount").value;
+      var tipamount = document.querySelector('input[name="tipVal"]:checked')
+        .value;
+
+      localStorage.setItem("billamount", billamount);
+      localStorage.setItem("tipamount", tipamount);
+      return false;
+    }
+  </script>
+</html>
